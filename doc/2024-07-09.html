@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-07-21 日 22:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2024-07-09</title>
+<meta name="author" content="John Doe" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">2024-07-09</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfd25aa5">1. rust 4 linux</a></li>
+<li><a href="#orga272ad0">2. e1000</a>
+<ul>
+<li><a href="#org7616efc">2.1. 相关资料</a></li>
+</ul>
+</li>
+<li><a href="#orgdc440bf">3. rust 4 linux 作业</a>
+<ul>
+<li><a href="#org7208c0c">3.1. 编译linux内核</a></li>
+<li><a href="#org138c47f">3.2. 作业2 编译src<sub>e1000</sub></a>
+<ul>
+<li><a href="#org0ddc31e">3.2.1. 1.编译成模块是在哪个文件哪条语句定义的？</a></li>
+<li><a href="#orgdbbc6cc">3.2.2. 2.out-of-tree module怎么与内核产生关联?</a></li>
+<li><a href="#org7ac5084">3.2.3. 3.rust版本网卡驱动</a></li>
+</ul>
+</li>
+<li><a href="#org7abb8b2">3.3. 作业3 编写简单rust模块</a></li>
+<li><a href="#org5e5f615">3.4. 作业4 为e1000添加remove</a>
+<ul>
+<li><a href="#org305869a">3.4.1. 学习记录</a>
+<ul>
+<li><a href="#org356ae1f">3.4.1.1. RxDesc (Receive Descriptor)</a></li>
+<li><a href="#org0557ed5">3.4.1.2. c</a></li>
+<li><a href="#org2874474">3.4.1.3. e1000<sub>driver</sub></a></li>
+<li><a href="#orge427124">3.4.1.4. rust</a></li>
+<li><a href="#orgf4511ef">3.4.1.5. 语法方面的学习</a></li>
+<li><a href="#org3646f16">3.4.1.6. pci.rs</a></li>
+<li><a href="#orgca86048">3.4.1.7. 注册prob,remove</a></li>
+<li><a href="#orgedb1fb8">3.4.1.8. remove 流程</a></li>
+<li><a href="#org728266c">3.4.1.9. mis</a></li>
+<li><a href="#orgced6e11">3.4.1.10. rust 知识</a></li>
+</ul>
+</li>
+<li><a href="#orge172203">3.4.2. 作业结果</a>
+<ul>
+<li><a href="#orge004784">3.4.2.1. insmode ping</a></li>
+<li><a href="#org2183ccd">3.4.2.2. rmmode insmod ping</a></li>
+<li><a href="#org36fcf8e">3.4.2.3. 尚未完善的地方</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+<a href="../20240325215107-rust_for_linux.html#ID-5dc6b6fc-1736-4637-bcad-9bb115138f2e">rust<sub>for</sub><sub>linux</sub></a>
+</p>
+<div id="outline-container-orgfd25aa5" class="outline-2">
+<h2 id="orgfd25aa5"><span class="section-number-2">1.</span> rust 4 linux</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+</div>
+<div id="outline-container-orga272ad0" class="outline-2">
+<h2 id="orga272ad0"><span class="section-number-2">2.</span> e1000</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://docs.qq.com/doc/DSk5xTHRJY1FZVUdK">https://docs.qq.com/doc/DSk5xTHRJY1FZVUdK</a>
+</p>
+</div>
+<div id="outline-container-org7616efc" class="outline-3">
+<h3 id="org7616efc"><span class="section-number-3">2.1.</span> 相关资料</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="https://pdos.csail.mit.edu/6.828/2011/readings/hardware/8254x_GBe_SDM.pdf">https://pdos.csail.mit.edu/6.828/2011/readings/hardware/8254x_GBe_SDM.pdf</a>
+</p>
+
+<p>
+<a href="https://docs.kernel.org/core-api/dma-api-howto.html">https://docs.kernel.org/core-api/dma-api-howto.html</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc440bf" class="outline-2">
+<h2 id="orgdc440bf"><span class="section-number-2">3.</span> rust 4 linux 作业</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org7208c0c" class="outline-3">
+<h3 id="org7208c0c"><span class="section-number-3">3.1.</span> 编译linux内核</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #ECBE7B;">make</span> x86_64_defconfig
+<span style="color: #ECBE7B;">make</span> <span style="color: #dcaeea;">LLVM</span>=<span style="color: #da8548; font-weight: bold;">1</span> menuconfig
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">set the following config to yes</span>
+<span style="color: #5B6268;">#</span><span style="color: #5B6268;">General setup</span>
+<span style="color: #5B6268;">#        </span><span style="color: #5B6268;">---&gt; [*] Rust support</span>
+<span style="color: #ECBE7B;">make</span> <span style="color: #dcaeea;">LLVM</span>=<span style="color: #da8548; font-weight: bold;">1</span> -j$<span style="color: #51afef;">(</span>nproc<span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+menuconfig设置添加rust支持之后，.config文件
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">...
+
+CONFIG_RUST=y
+CONFIG_RUSTC_VERSION_TEXT="rustc 1.62.0 (a8314ef7d 2022-06-27)"
+CONFIG_BINDGEN_VERSION_TEXT="bindgen 0.56.0"
+CONFIG_TRACEPOINTS=y
+# end of General setup
+
+
+...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org138c47f" class="outline-3">
+<h3 id="org138c47f"><span class="section-number-3">3.2.</span> 作业2 编译src<sub>e1000</sub></h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org0ddc31e" class="outline-4">
+<h4 id="org0ddc31e"><span class="section-number-4">3.2.1.</span> 1.编译成模块是在哪个文件哪条语句定义的？</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+kbuild文件里面的
+obj-m := r4l<sub>e1000</sub><sub>demo.o</sub>
+</p>
+
+<blockquote>
+<p>
+m指的是module
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgdbbc6cc" class="outline-4">
+<h4 id="orgdbbc6cc"><span class="section-number-4">3.2.2.</span> 2.out-of-tree module怎么与内核产生关联?</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+在Makefile中的 ../linux 指的是内核路径
+</p>
+</div>
+</div>
+<div id="outline-container-org7ac5084" class="outline-4">
+<h4 id="org7ac5084"><span class="section-number-4">3.2.3.</span> 3.rust版本网卡驱动</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+<pre class="src src-shell">insmod r4l_e1000_demo.ko
+ip link set eth0 up
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36825;&#37324;&#25552;&#31034;&#21442;&#25968;&#26080;&#25928;, &#29992;&#30340;&#26367;&#20195;&#21629;&#20196; ifconfig eth0 10.0.2.15 netmask 255.255.255.0</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip addr add broadcast 10.0.2.255 dev eth0</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip addr add 10.0.2.15/255.255.255.0 dev eth0</span>
+ifconfig eth0 10.0.2.15 netmask 255.255.255.0
+
+ip route add default via 10.0.2.1
+ping 10.0.2.2
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nil">
+ip link set eth0 up
+ifconfig eth0 10.0.2.15 netmask 255.255.255.0
+ip route add default via 10.0.2.1
+ping 10.0.2.2
+
+</pre>
+</div>
+
+
+
+<div id="org6bca050" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-10_10-23-34_screenshot.png" alt="2024-07-10_10-23-34_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7abb8b2" class="outline-3">
+<h3 id="org7abb8b2"><span class="section-number-3">3.3.</span> 作业3 编写简单rust模块</h3>
+<div class="outline-text-3" id="text-3-3">
+
+<div id="orgf525bf8" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-10_10-56-48_screenshot.png" alt="2024-07-10_10-56-48_screenshot.png" />
+</p>
+</div>
+
+<p>
+修改的文件
+</p>
+<div class="org-src-container">
+<pre class="src src-diff"><span style="color: #46D9FF;">diff --git a/linux/samples/rust/Kconfig b/linux/samples/rust/Kconfig</span>
+<span style="color: #46D9FF;">index 189c10ced..6fab6b309 100644</span>
+<span style="color: #46D9FF;">--- </span><span style="color: #51afef;">a/linux/samples/rust/Kconfig</span>
+<span style="color: #46D9FF;">+++ </span><span style="color: #51afef;">b/linux/samples/rust/Kconfig</span>
+<span style="color: #a9a1e1;">@@ -163,4 +163,12 @@</span><span style="color: #46D9FF;"> config SAMPLE_RUST_SELFTESTS</span>
+
+<span style="color: #a4aab6;">      If unsure, say N.</span>
+
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">config SAMPLE_RUST_HELLOWORLD</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">   tristate "Hello world"</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">   help</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">     This option builds the Rust helloworld sample.</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">     If unsure, say N.</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span>
+<span style="color: #a4aab6;"> endif # SAMPLES_RUST</span>
+<span style="color: #46D9FF;">diff --git a/linux/samples/rust/Makefile b/linux/samples/rust/Makefile</span>
+<span style="color: #46D9FF;">index 420bcefeb..968d7f8af 100644</span>
+<span style="color: #46D9FF;">--- </span><span style="color: #51afef;">a/linux/samples/rust/Makefile</span>
+<span style="color: #46D9FF;">+++ </span><span style="color: #51afef;">b/linux/samples/rust/Makefile</span>
+<span style="color: #a9a1e1;">@@ -16,4 +16,7 @@</span><span style="color: #46D9FF;"> obj-$(CONFIG_SAMPLE_RUST_ECHO_SERVER)     += rust_echo_server.o</span>
+<span style="color: #a4aab6;"> obj-$(CONFIG_SAMPLE_RUST_FS)           += rust_fs.o</span>
+<span style="color: #a4aab6;"> obj-$(CONFIG_SAMPLE_RUST_SELFTESTS)        += rust_selftests.o</span>
+
+<span style="color: #22aa22; background-color: #21242b;">+</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span><span style="color: #98be65; background-color: #21242b;">obj-$(CONFIG_SAMPLE_RUST_HELLOWORLD)       += rust_helloworld.o</span>
+<span style="color: #22aa22; background-color: #21242b;">+</span>
+<span style="color: #a4aab6;"> subdir-$(CONFIG_SAMPLE_RUST_HOSTPROGS)     += hostprogs</span>
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5e5f615" class="outline-3">
+<h3 id="org5e5f615"><span class="section-number-3">3.4.</span> 作业4 为e1000添加remove</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-org305869a" class="outline-4">
+<h4 id="org305869a"><span class="section-number-4">3.4.1.</span> 学习记录</h4>
+<div class="outline-text-4" id="text-3-4-1">
+</div>
+<div id="outline-container-org356ae1f" class="outline-5">
+<h5 id="org356ae1f"><span class="section-number-5">3.4.1.1.</span> RxDesc (Receive Descriptor)</h5>
+<div class="outline-text-5" id="text-3-4-1-1">
+
+<div id="orgca4f17c" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-13_21-59-01_screenshot.png" alt="2024-07-13_21-59-01_screenshot.png" />
+</p>
+</div>
+
+<p>
+对应的rust代码
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">// Defined in intel chip manual section 3.2.3
+#[repr(C)]
+pub(crate) struct RxDescEntry {
+    pub(crate) buf_addr: u64,
+    pub(crate) length: u16,
+    pub(crate) checksum: u16,
+    pub(crate) status: u8,
+    pub(crate) errors: u8,
+    pub(crate) special: u16,
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0557ed5" class="outline-5">
+<h5 id="org0557ed5"><span class="section-number-5">3.4.1.2.</span> c</h5>
+</div>
+<div id="outline-container-org2874474" class="outline-5">
+<h5 id="org2874474"><span class="section-number-5">3.4.1.3.</span> e1000<sub>driver</sub></h5>
+<div class="outline-text-5" id="text-3-4-1-3">
+<div class="org-src-container">
+<pre class="src src-c">
+<span style="color: #51afef;">static</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">pci_driver</span> <span style="color: #dcaeea;">e1000_driver</span> = {
+    .name     = e1000_driver_name,
+    .id_table = e1000_pci_tbl,
+    .probe    = e1000_probe,
+    .remove   = e1000_remove,
+    .driver = {
+        .pm = &amp;e1000_pm_ops,
+    },
+    .shutdown = e1000_shutdown,
+    .err_handler = &amp;e1000_err_handler
+};
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge427124" class="outline-5">
+<h5 id="orge427124"><span class="section-number-5">3.4.1.4.</span> rust</h5>
+</div>
+<div id="outline-container-orgf4511ef" class="outline-5">
+<h5 id="orgf4511ef"><span class="section-number-5">3.4.1.5.</span> 语法方面的学习</h5>
+<div class="outline-text-5" id="text-3-4-1-5">
+</div>
+<ol class="org-ol">
+<li><a id="org3503647"></a><a href="2024-04-07.html#ID-cfda6477-68db-4a3c-8895-4f9127a3ee9f">raw pointer to ref</a><br />
+<div class="outline-text-6" id="text-3-4-1-5-1">
+<p>
+net.rs
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">pub(crate) unsafe fn from_ptr&lt;'a&gt;(ptr: *const bindings::net_device) -&gt; &amp;'a Device {
+    // SAFETY: The safety requirements guarantee the validity of the dereference, while the
+    // `Device` type being transparent makes the cast ok.
+    unsafe { &amp;*ptr.cast() }
+}
+</pre>
+</div>
+
+<p>
+<code>unsafe { &amp;*ptr.cast() }</code>
+</p>
+
+<p>
+实际的调用顺序，
+ptr.cast() -&gt; *(ptr.cast()) -&gt; &amp;(ptr.cast())
+</p>
+</div>
+</li>
+<li><a id="org3d9ffd0"></a>泛型,泛型内的数据类型作为泛型<br />
+<div class="outline-text-6" id="text-3-4-1-5-2">
+<p>
+linux/rust/kernel/driver.rs
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">
+/// The registration of a driver.
+pub struct Registration&lt;T: DriverOps&gt; {
+    is_registered: bool,
+    concrete_reg: UnsafeCell&lt;T::RegType&gt;,
+}
+</pre>
+</div>
+
+<p>
+<code>pub struct Registration&lt;T: DriverOps&gt;</code>
+这里的 <code>T: DriverOps</code> 指的是类型
+对比下面的 <code>concrete_reg: UnsafeCell&lt;T::RegType&gt;,</code> T::RegType 指的是类型T中的 <code>数据类型</code>
+注意下面的有2个冒号
+</p>
+</div>
+</li>
+<li><a id="orgf91291d"></a>rust cell<br />
+<div class="outline-text-6" id="text-3-4-1-5-3">
+<p>
+<a href="https://www.youtube.com/watch?v=8O0Nt9qY_vo&amp;ab_channel=JonGjengset">https://www.youtube.com/watch?v=8O0Nt9qY_vo&amp;ab_channel=JonGjengset</a>
+</p>
+
+<p>
+<a href="https://rustwiki.org/zh-CN/std/cell/struct.Cell.html">https://rustwiki.org/zh-CN/std/cell/struct.Cell.html</a>
+</p>
+
+<ol class="org-ol">
+<li>通过共享引用来改变值</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-rust">let num = Cell&lt;i32&gt;::new(32);
+num.set(10);
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>get返回的是copy</li>
+</ol>
+<p>
+<a href="https://rustwiki.org/zh-CN/std/cell/struct.Cell.html#method.get">https://rustwiki.org/zh-CN/std/cell/struct.Cell.html#method.get</a>
+</p>
+<ol class="org-ol">
+<li>cell没有相关方法来获取内部数据的ref
+永远无法获取内部数据的指针</li>
+</ol>
+
+<p>
+如果获取不到Cell里面T的引用，那么改Cell就是安全的，如果没人在引用里面的数据，那么改这个数据就行了
+</p>
+
+<blockquote>
+<p>
+if we know no one else is a pointer to the value we&rsquo;re storing,
+then changing that value is fine
+</p>
+</blockquote>
+</div>
+</li>
+<li><a id="org5127fae"></a>PointerWrapper<br />
+<div class="outline-text-6" id="text-3-4-1-5-4">
+<p>
+暂时理解为，可以返回一个对*const c<sub>void的引用</sub>
+比如下面的 <code>let data = unsafe { T::Data::borrow(bindings::dev_get_drvdata(&amp;mut (*netdev).dev)) };</code>
+<code>bindings::dev_get_drvdata(&amp;mut (*netdev).dev))</code> ffi调用返回的是c语言的指针
+这里可以把这个指针转换成rust中的某个数据的引用，那么这个引用的生命周期长度暂时理解为与c语言具体指针生命周期相关
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-rust">linux/rust/kernel/types.rs
+pub trait PointerWrapper {
+    type Borrowed&lt;'a&gt;;
+
+    fn into_pointer(self) -&gt; *const c_void;
+    unsafe fn from_pointer(ptr: *const c_void) -&gt; Self;
+    unsafe fn borrow&lt;'a&gt;(ptr: *const c_void) -&gt; Self::Borrowed&lt;'a&gt;;
+}
+
+linux/rust/kernel/net.rs
+/// Corresponds to the kernel's `struct net_device_ops`.
+#[vtable]
+pub trait DeviceOperations {
+    /// The pointer type that will be used to hold driver-defined data type.
+    type Data: PointerWrapper + Send + Sync = ();
+
+    /// Corresponds to `ndo_open` in `struct net_device_ops`.
+    fn open(dev: &amp;Device, data: &lt;Self::Data as PointerWrapper&gt;::Borrowed&lt;'_&gt;) -&gt; Result;
+}
+
+
+impl&lt;T: DeviceOperations&gt; Registration&lt;T&gt; {
+
+    unsafe extern "C" fn open_callback(netdev: *mut bindings::net_device) -&gt; core::ffi::c_int {
+        from_kernel_result! {
+            // SAFETY: The C API guarantees that `net_device` isn't released while this function is running.
+            let dev = unsafe { Device::from_ptr(netdev) };
+            // SAFETY: The value stored as driver data was returned by `into_pointer` during registration.
+            let data = unsafe { T::Data::borrow(bindings::dev_get_drvdata(&amp;mut (*netdev).dev)) };
+            T::open(dev, data)?;
+            Ok(0)
+        }
+    }
+}
+
+_src_e1000/r4l_e1000_demo.rs
+#[vtable]
+impl net::DeviceOperations for NetDevice {
+
+    type Data = Box&lt;NetDevicePrvData&gt;;
+    /// this method will be called when you type `ip link set eth0 up` in your shell.
+    fn open(dev: &amp;net::Device, data: &amp;NetDevicePrvData) -&gt; Result {}
+}
+
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org24dd1af"></a><span class="todo TODO">TODO</span> 待解决<br />
+<div class="outline-text-7" id="text-3-4-1-5-4-1">
+<ol class="org-ol">
+<li>看看理解的有没有问题</li>
+</ol>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="orgd8fe847"></a>解引用强制转换<br />
+<div class="outline-text-6" id="text-3-4-1-5-5">
+<p>
+<a href="https://rustwiki.org/zh-CN/book/ch15-02-deref.html">https://rustwiki.org/zh-CN/book/ch15-02-deref.html</a>
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org3646f16" class="outline-5">
+<h5 id="org3646f16"><span class="section-number-5">3.4.1.6.</span> pci.rs</h5>
+<div class="outline-text-5" id="text-3-4-1-6">
+<div class="org-src-container">
+<pre class="src src-rust">pub struct Adapter&lt;T: Driver&gt;(T);
+
+impl&lt;T: Driver&gt; driver::DriverOps for Adapter&lt;T&gt; {}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca86048" class="outline-5">
+<h5 id="orgca86048"><span class="section-number-5">3.4.1.7.</span> 注册prob,remove</h5>
+<div class="outline-text-5" id="text-3-4-1-7">
+<div class="org-src-container">
+<pre class="src src-rust">impl&lt;T: Driver&gt; driver::DriverOps for Adapter&lt;T&gt; {
+    type RegType = bindings::pci_driver;
+
+    unsafe fn register(
+       ...
+    ) -&gt; Result {
+        ...
+           
+        pdrv.name = name.as_char_ptr();
+        pdrv.probe = Some(Self::probe_callback);
+        pdrv.remove = Some(Self::remove_callback);
+        pdrv.id_table = T::ID_TABLE.as_ref();
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgedb1fb8" class="outline-5">
+<h5 id="orgedb1fb8"><span class="section-number-5">3.4.1.8.</span> remove 流程</h5>
+<div class="outline-text-5" id="text-3-4-1-8">
+<div class="org-src-container">
+<pre class="src src-c">
+<span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">e1000_remove</span>(<span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">pci_dev</span> *<span style="color: #dcaeea;">pdev</span>)
+{
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">net_device</span> *<span style="color: #dcaeea;">netdev</span> = pci_get_drvdata(pdev);
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">e1000_adapter</span> *<span style="color: #dcaeea;">adapter</span> = netdev_priv(netdev);
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">e1000_hw</span> *<span style="color: #dcaeea;">hw</span> = &amp;adapter-&gt;hw;
+    <span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">disable_dev</span>;
+
+    e1000_down_and_stop(adapter);
+    e1000_release_manageability(adapter);
+
+    unregister_netdev(netdev);
+
+    e1000_phy_hw_reset(hw);
+
+    kfree(adapter-&gt;tx_ring);
+    kfree(adapter-&gt;rx_ring);
+
+    <span style="color: #51afef;">if</span> (hw-&gt;mac_type == e1000_ce4100)
+        iounmap(hw-&gt;ce4100_gbe_mdio_base_virt);
+    iounmap(hw-&gt;hw_addr);
+    <span style="color: #51afef;">if</span> (hw-&gt;flash_address)
+        iounmap(hw-&gt;flash_address);
+    pci_release_selected_regions(pdev, adapter-&gt;bars);
+
+    disable_dev = <span style="color: #51afef; font-weight: bold;">!</span>test_and_set_bit(__E1000_DISABLED, &amp;adapter-&gt;flags);
+    free_netdev(netdev);
+
+    <span style="color: #51afef;">if</span> (disable_dev)
+        pci_disable_device(pdev);
+}
+
+
+
+</pre>
+</div>
+
+
+<p>
+c的 <code>unregister_netdev</code> 在 <code>drop</code> net::Registration时调用
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">impl&lt;T: DeviceOperations&gt; Drop for net::Registration&lt;T&gt; {
+    fn drop(&amp;mut self) {
+        // SAFETY: `dev` was allocated during initialization and guaranteed to be valid.
+        unsafe {
+            if self.registered {
+                bindings::unregister_netdev(self.dev);
+            }
+            bindings::free_netdev(self.dev);
+        }
+    }
+}
+</pre>
+</div>
+
+<p>
+什么时候 <code>net::Registration&lt;DeviceOperations&gt;</code> 失效的
+prob的时候，放到了 <code>E1000DrvPrvData</code> 里面去
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">
+let data = T::probe(&amp;mut dev, info)?;
+// SAFETY: `pdev` is guaranteed to be a valid, non-null pointer.
+unsafe { bindings::pci_set_drvdata(pdev, data.into_pointer() as _) };
+
+</pre>
+</div>
+
+
+<ol class="org-ol">
+<li><p>
+从pci.rs remove<sub>callback开始</sub>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">impl&lt;T: Driver&gt; Adapter&lt;T&gt; {
+    extern "C" fn remove_callback(pdev: *mut bindings::pci_dev) {
+        //...
+        T::remove(&amp;data);
+        &lt;T::Data as driver::DeviceRemoval&gt;::device_remove(&amp;data);
+    }
+}
+</pre>
+</div></li>
+
+<li><p>
+_src<sub>e1000</sub>/r4l<sub>e1000</sub><sub>demo.rs</sub>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">impl pci::Driver for E1000Drv {
+    // The Box type has implemented PointerWrapper trait.
+    type Data = Box&lt;E1000DrvPrvData&gt;;
+
+    fn remove(data: &amp;Self::Data) {
+        pr_info!("Rust for linux e1000 driver demo (remove)\n");
+    }
+}
+
+impl driver::DeviceRemoval for E1000DrvPrvData {
+    fn device_remove(&amp;self) {
+        pr_info!("Rust for linux e1000 driver demo (device_remove)\n");
+
+    }
+}
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org728266c" class="outline-5">
+<h5 id="org728266c"><span class="section-number-5">3.4.1.9.</span> mis</h5>
+<div class="outline-text-5" id="text-3-4-1-9">
+<p>
+let reg = driver::Registration::&lt;pci::Adapter&lt;E1000Drv&gt;&gt;::new<sub>pinned</sub>(name, module)?
+</p>
+
+<p>
+driver::Registration drop的时候，调用 DriverOps::unregister <code>bindings::pci_unregister_driver</code>
+</p>
+
+
+
+<p>
+prob
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">// net::Registration 保存了 pci_dev
+410 let mut netdev_reg = net::Registration::&lt;NetDevice&gt;::try_new(dev)?;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgced6e11" class="outline-5">
+<h5 id="orgced6e11"><span class="section-number-5">3.4.1.10.</span> <a href="2024-07-20.html#ID-acc2dc7c-1ac3-43dd-8bca-e153e1a40756">rust 知识</a></h5>
+</div>
+</div>
+<div id="outline-container-orge172203" class="outline-4">
+<h4 id="orge172203"><span class="section-number-4">3.4.2.</span> 作业结果</h4>
+<div class="outline-text-4" id="text-3-4-2">
+</div>
+<div id="outline-container-orge004784" class="outline-5">
+<h5 id="orge004784"><span class="section-number-5">3.4.2.1.</span> insmode ping</h5>
+<div class="outline-text-5" id="text-3-4-2-1">
+
+<div id="org8686fa0" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-21_21-27-23_screenshot.png" alt="2024-07-21_21-27-23_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2183ccd" class="outline-5">
+<h5 id="org2183ccd"><span class="section-number-5">3.4.2.2.</span> rmmode insmod ping</h5>
+<div class="outline-text-5" id="text-3-4-2-2">
+<p>
+rmmode insmod
+</p>
+
+<div id="org3453a4d" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-21_21-28-44_screenshot.png" alt="2024-07-21_21-28-44_screenshot.png" />
+</p>
+</div>
+
+<p>
+ping
+</p>
+
+
+<div id="org126e75d" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-21_21-29-51_screenshot.png" alt="2024-07-21_21-29-51_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org36fcf8e" class="outline-5">
+<h5 id="org36fcf8e"><span class="section-number-5">3.4.2.3.</span> 尚未完善的地方</h5>
+<div class="outline-text-5" id="text-3-4-2-3">
+<p>
+freeirq的时候，没有检查是否在eth0 open的时候irq已经初始化了
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: John Doe</p>
+<p class="date">Created: 2024-07-21 日 22:58</p>
+</div>
+</body>
+</html>
