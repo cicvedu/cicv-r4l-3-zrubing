@@ -6035,7 +6035,6 @@ bool napi_complete_done(struct napi_struct *n, int work_done)
 	 * 2) If we are busy polling, do nothing here, we have
 	 *    the guarantee we will be called later.
 	 */
-	pr_info("napi done 1");
 	if (unlikely(n->state & (NAPIF_STATE_NPSVC |
 				 NAPIF_STATE_IN_BUSY_POLL)))
 		return false;
@@ -6046,7 +6045,6 @@ bool napi_complete_done(struct napi_struct *n, int work_done)
 		n->defer_hard_irqs_count = READ_ONCE(n->dev->napi_defer_hard_irqs);
 	}
 
-	pr_info("napi done 2");
 	if (n->defer_hard_irqs_count > 0) {
 		n->defer_hard_irqs_count--;
 		timeout = READ_ONCE(n->dev->gro_flush_timeout);
@@ -6096,7 +6094,6 @@ bool napi_complete_done(struct napi_struct *n, int work_done)
 		hrtimer_start(&n->timer, ns_to_ktime(timeout),
 			      HRTIMER_MODE_REL_PINNED);
 
-	pr_info("napi done 3");
 	return ret;
 }
 EXPORT_SYMBOL(napi_complete_done);

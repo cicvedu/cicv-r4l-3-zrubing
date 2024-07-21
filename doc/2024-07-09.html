@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-07-21 日 22:58 -->
+<!-- 2024-07-22 一 04:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>2024-07-09</title>
@@ -243,6 +243,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#org7cb99f5">3.5. 字符设备</a></li>
 </ul>
 </li>
 </ul>
@@ -366,7 +367,7 @@ ping 10.0.2.2
 
 
 
-<div id="org6bca050" class="figure">
+<div id="org93f578c" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-10_10-23-34_screenshot.png" alt="2024-07-10_10-23-34_screenshot.png" />
 </p>
 </div>
@@ -377,7 +378,7 @@ ping 10.0.2.2
 <h3 id="org7abb8b2"><span class="section-number-3">3.3.</span> 作业3 编写简单rust模块</h3>
 <div class="outline-text-3" id="text-3-3">
 
-<div id="orgf525bf8" class="figure">
+<div id="orga86ca9a" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-10_10-56-48_screenshot.png" alt="2024-07-10_10-56-48_screenshot.png" />
 </p>
 </div>
@@ -433,7 +434,7 @@ ping 10.0.2.2
 <h5 id="org356ae1f"><span class="section-number-5">3.4.1.1.</span> RxDesc (Receive Descriptor)</h5>
 <div class="outline-text-5" id="text-3-4-1-1">
 
-<div id="orgca4f17c" class="figure">
+<div id="orgc74e05d" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-13_21-59-01_screenshot.png" alt="2024-07-13_21-59-01_screenshot.png" />
 </p>
 </div>
@@ -488,7 +489,7 @@ pub(crate) struct RxDescEntry {
 <div class="outline-text-5" id="text-3-4-1-5">
 </div>
 <ol class="org-ol">
-<li><a id="org3503647"></a><a href="2024-04-07.html#ID-cfda6477-68db-4a3c-8895-4f9127a3ee9f">raw pointer to ref</a><br />
+<li><a id="org45d8a61"></a><a href="2024-04-07.html#ID-cfda6477-68db-4a3c-8895-4f9127a3ee9f">raw pointer to ref</a><br />
 <div class="outline-text-6" id="text-3-4-1-5-1">
 <p>
 net.rs
@@ -512,7 +513,7 @@ ptr.cast() -&gt; *(ptr.cast()) -&gt; &amp;(ptr.cast())
 </p>
 </div>
 </li>
-<li><a id="org3d9ffd0"></a>泛型,泛型内的数据类型作为泛型<br />
+<li><a id="org0f07675"></a>泛型,泛型内的数据类型作为泛型<br />
 <div class="outline-text-6" id="text-3-4-1-5-2">
 <p>
 linux/rust/kernel/driver.rs
@@ -535,7 +536,7 @@ pub struct Registration&lt;T: DriverOps&gt; {
 </p>
 </div>
 </li>
-<li><a id="orgf91291d"></a>rust cell<br />
+<li><a id="org71e045e"></a>rust cell<br />
 <div class="outline-text-6" id="text-3-4-1-5-3">
 <p>
 <a href="https://www.youtube.com/watch?v=8O0Nt9qY_vo&amp;ab_channel=JonGjengset">https://www.youtube.com/watch?v=8O0Nt9qY_vo&amp;ab_channel=JonGjengset</a>
@@ -577,7 +578,7 @@ then changing that value is fine
 </blockquote>
 </div>
 </li>
-<li><a id="org5127fae"></a>PointerWrapper<br />
+<li><a id="orgb965040"></a>PointerWrapper<br />
 <div class="outline-text-6" id="text-3-4-1-5-4">
 <p>
 暂时理解为，可以返回一个对*const c<sub>void的引用</sub>
@@ -636,7 +637,7 @@ impl net::DeviceOperations for NetDevice {
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org24dd1af"></a><span class="todo TODO">TODO</span> 待解决<br />
+<li><a id="org0cc73ba"></a><span class="todo TODO">TODO</span> 待解决<br />
 <div class="outline-text-7" id="text-3-4-1-5-4-1">
 <ol class="org-ol">
 <li>看看理解的有没有问题</li>
@@ -645,7 +646,7 @@ impl net::DeviceOperations for NetDevice {
 </li>
 </ol>
 </li>
-<li><a id="orgd8fe847"></a>解引用强制转换<br />
+<li><a id="org001bc00"></a>解引用强制转换<br />
 <div class="outline-text-6" id="text-3-4-1-5-5">
 <p>
 <a href="https://rustwiki.org/zh-CN/book/ch15-02-deref.html">https://rustwiki.org/zh-CN/book/ch15-02-deref.html</a>
@@ -838,7 +839,7 @@ prob
 <h5 id="orge004784"><span class="section-number-5">3.4.2.1.</span> insmode ping</h5>
 <div class="outline-text-5" id="text-3-4-2-1">
 
-<div id="org8686fa0" class="figure">
+<div id="org7867146" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-21_21-27-23_screenshot.png" alt="2024-07-21_21-27-23_screenshot.png" />
 </p>
 </div>
@@ -851,7 +852,7 @@ prob
 rmmode insmod
 </p>
 
-<div id="org3453a4d" class="figure">
+<div id="org43ebe6e" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-21_21-28-44_screenshot.png" alt="2024-07-21_21-28-44_screenshot.png" />
 </p>
 </div>
@@ -861,7 +862,7 @@ ping
 </p>
 
 
-<div id="org126e75d" class="figure">
+<div id="orge4dc79d" class="figure">
 <p><img src="rust_4_linux_作业/2024-07-21_21-29-51_screenshot.png" alt="2024-07-21_21-29-51_screenshot.png" />
 </p>
 </div>
@@ -877,11 +878,46 @@ freeirq的时候，没有检查是否在eth0 open的时候irq已经初始化了
 </div>
 </div>
 </div>
+<div id="outline-container-org7cb99f5" class="outline-3">
+<h3 id="org7cb99f5"><span class="section-number-3">3.5.</span> 字符设备</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Q：作业5中的字符设备/dev/cicv是怎么创建的？它的设备号是多少？它是如何与我们写的字符设备驱动关联上的？
+</p>
+
+<p>
+主设备号248 ， 次设备号0
+代码中注册的时候，设置了次设备号为0
+</p>
+
+<p>
+cat /proc/devices 可以发现
+248 rust<sub>chrdev</sub>
+</p>
+
+<blockquote>
+<p>
+
+</p>
+
+<p>
+在build<sub>image中用mknode创建的</sub>
+echo &ldquo;mknod /dev/cicv c 248 0&rdquo; &gt;&gt; etc/init.d/rcS
+</p>
+</blockquote>
+
+
+<div id="org7951f98" class="figure">
+<p><img src="rust_4_linux_作业/2024-07-22_04-18-34_screenshot.png" alt="2024-07-22_04-18-34_screenshot.png" />
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: John Doe</p>
-<p class="date">Created: 2024-07-21 日 22:58</p>
+<p class="date">Created: 2024-07-22 一 04:27</p>
 </div>
 </body>
 </html>

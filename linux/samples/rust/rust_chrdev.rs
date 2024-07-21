@@ -2,7 +2,7 @@
 
 //! Rust character device sample.
 
-use core::result::Result::Err;
+use core::result::Result::{Err, Ok};
 
 use kernel::prelude::*;
 use kernel::sync::Mutex;
@@ -34,17 +34,39 @@ impl file::Operations for RustFile {
     fn open(_shared: &(), _file: &file::File) -> Result<Box<Self>> {
         Ok(
             Box::try_new(RustFile {
-                inner: &GLOBALMEM_BUF
+                inner: &GLOBALMEM_BUF,
             })?
         )
     }
 
     fn write(_this: &Self,_file: &file::File,_reader: &mut impl kernel::io_buffer::IoBufferReader,_offset:u64,) -> Result<usize> {
-        Err(EPERM)
+
+
+        // copy from user
+        let data = _reader.read_all()?;
+
+        pr_info!("offset in write:{} data len:{} \n", _offset, data.len());
+
+        //全写进去
+        GLOBALMEM_BUF.lock()[..data.len()].copy_from_slice(&data);
+
+
+        Ok(data.len())
     }
 
     fn read(_this: &Self,_file: &file::File,_writer: &mut impl kernel::io_buffer::IoBufferWriter,_offset:u64,) -> Result<usize> {
-        Err(EPERM)
+
+
+        if _offset > GLOBALMEM_SIZE as u64 {
+            return Ok(0);
+        }
+
+        pr_info!("offset in read:{} \n" ,_offset);
+        //全都出来
+        let slice = &GLOBALMEM_BUF.lock()[_offset as usize..GLOBALMEM_SIZE as usize];
+        _writer.write_slice(slice)?;
+
+        Ok(slice.len())
     }
 }
 
