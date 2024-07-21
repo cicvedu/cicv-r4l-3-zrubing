@@ -4,7 +4,7 @@
 //!
 //! C header: [`include/linux/dma-mapping.h`](../../../../include/linux/dma-mapping.h)
 
-use crate::{bindings, device, device::RawDevice, error, to_result, Result};
+use crate::{bindings, device::{self, RawDevice}, error, pr_info, to_result, Result};
 
 /// Set the DMA mask to inform the kernel about DMA addressing capabilities.
 pub fn set_mask(dev: &dyn device::RawDevice, mask: u64) -> Result {
@@ -81,6 +81,7 @@ impl<T> Drop for Allocation<T> {
     fn drop(&mut self) {
         let size = core::mem::size_of::<T>() * self.count;
         // SAFETY: Allocation holds a reference to the device so self.dev.raw_device() is valid.
+        pr_info!("drop in dma Allocation, cpu_addr:{:p}",self.cpu_addr);
         unsafe {
             bindings::dma_free_coherent(
                 self.dev.raw_device(),

@@ -7,19 +7,10 @@
 //! [`include/linux/skbuff.h`](../../../../include/linux/skbuff.h).
 
 use crate::{
-    bindings, device,
-    error::{code::ENOMEM, from_kernel_result},
-    str::CStr,
-    sync::UniqueArc,
-    to_result,
-    types::PointerWrapper,
-    ARef, AlwaysRefCounted, Error, Result,
+    bindings, device, error::{code::ENOMEM, from_kernel_result}, pr_info, str::CStr, sync::UniqueArc, to_result, types::PointerWrapper, ARef, AlwaysRefCounted, Error, Result
 };
 use core::{
-    cell::UnsafeCell,
-    marker::PhantomData,
-    pin::Pin,
-    ptr::{addr_of, addr_of_mut, NonNull},
+    cell::UnsafeCell, marker::PhantomData, pin::Pin, ptr::{addr_of, addr_of_mut, NonNull}
 };
 use macros::vtable;
 
@@ -53,6 +44,17 @@ impl Device {
         // `Device` type being transparent makes the cast ok.
         unsafe { &*ptr.cast() }
     }
+
+    /// doc
+    pub fn get_raw_device(&self) -> *mut bindings::net_device {
+        self.0.get()
+    }
+
+    // /// netif_tx_disable
+    // pub fn netif_tx_disable(&self) {
+    //     // SAFETY: The netdev is valid because the shared reference guarantees a nonzero refcount.
+    //     unsafe { bindings::netif_tx_disable(self.0.get()) }
+    // }
 
     /// Sets carrier.
     pub fn netif_carrier_on(&self) {
@@ -175,6 +177,14 @@ impl<T: DeviceOperations> Registration<T> {
         unsafe { &*(self.dev as *const Device) }.into()
     }
 
+    /// Returns a network device data.
+    pub fn dev_get_drvdata(&self) -> T::Data {
+
+        let data = unsafe { T::Data::from_pointer(bindings::dev_get_drvdata(&mut (*self.dev).dev)) };
+
+        data
+    }
+
     /// Register a network device.
     pub fn register(&mut self, data: T::Data) -> Result {
         // SAFETY: `dev` was allocated during initialization and is guaranteed to be valid.
@@ -202,6 +212,9 @@ impl<T: DeviceOperations> Registration<T> {
 impl<T: DeviceOperations> Drop for Registration<T> {
     fn drop(&mut self) {
         // SAFETY: `dev` was allocated during initialization and guaranteed to be valid.
+        pr_info!("c bindings::unregister_netdev in net.rs, registered {}", self.registered);
+
+        pr_info!("c bindings::free_netdev in net.rs");
         unsafe {
             if self.registered {
                 bindings::unregister_netdev(self.dev);
@@ -476,6 +489,13 @@ impl Napi {
         // SAFETY: The existence of a shared reference means `self.0` is valid.
         unsafe {
             bindings::napi_enable(self.0.get());
+        }
+    }
+
+    /// disable napi
+    pub fn disable(&self) {
+        unsafe {
+            bindings::napi_disable(self.0.get());
         }
     }
 

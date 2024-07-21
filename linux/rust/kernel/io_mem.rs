@@ -6,7 +6,7 @@
 
 #![allow(dead_code)]
 
-use crate::{bindings, error::code::*, Result};
+use crate::{bindings, error::code::*, pr_info, Result};
 use core::convert::TryInto;
 
 /// Represents a memory resource.
@@ -273,6 +273,7 @@ impl<const SIZE: usize> Drop for IoMem<SIZE> {
     fn drop(&mut self) {
         // SAFETY: By the type invariant, `self.ptr` is a value returned by a previous successful
         // call to `ioremap`.
+        pr_info!("drop in iounmap {} in IoMem", self.ptr);
         unsafe { bindings::iounmap(self.ptr as _) };
     }
 }

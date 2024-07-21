@@ -1,0 +1,29 @@
+
+
+{
+  "name":"devcontainer_cicv_r4l_4",
+  "build": {
+	"context": ".",
+	"dockerfile": "./Dockerfile"
+  },
+	"containerEnv": {
+			"SHELL": "/bin/bash"
+	},
+  "postCreateCommand": "bash .devcontainer/setup-tools.sh",  // 在容器创建后运行的脚本
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {}
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "mounts":[
+    {
+      "source":"devcontainer_cicv_r4l_4_cargo_cache",
+      "target":"/usr/local/cargo",
+      "type":"volume"
+    }
+  ],
+	"userEnvProbe": "loginInteractiveShell"
+
+}
+

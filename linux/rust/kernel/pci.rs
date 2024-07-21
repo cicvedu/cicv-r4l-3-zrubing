@@ -5,15 +5,10 @@
 //! C header: [`include/linux/pci.h`](../../../../include/linux/pci.h)
 
 use crate::{
-    bindings, device, driver,
-    error::{
+    bindings, device, driver, error::{
         code::{EINVAL, ENOMEM},
         from_kernel_result, Error, Result,
-    },
-    str::CStr,
-    to_result,
-    types::PointerWrapper,
-    ThisModule,
+    }, pr_info, str::CStr, to_result, types::PointerWrapper, ThisModule
 };
 
 /// An adapter for the registration of PCI drivers.
@@ -30,6 +25,8 @@ impl<T: Driver> driver::DriverOps for Adapter<T> {
         // SAFETY: By the safety requirements of this function (defined in the trait definition),
         // `reg` is non-null and valid.
         let pdrv: &mut bindings::pci_driver = unsafe { &mut *reg };
+
+        pr_info!("calll register in Pci Adapter");
 
         pdrv.name = name.as_char_ptr();
         pdrv.probe = Some(Self::probe_callback);
@@ -48,6 +45,7 @@ impl<T: Driver> driver::DriverOps for Adapter<T> {
         // SAFETY: By the safety requirements of this function (defined in the trait definition),
         // `reg` was passed (and updated) by a previous successful call to
         // `__pci_register_driver`.
+        pr_info!("c bindings::pci_unregister_driver in pci.rs");
         unsafe { bindings::pci_unregister_driver(reg) }
     }
 }
@@ -90,6 +88,8 @@ impl<T: Driver> Adapter<T> {
         let data = unsafe { T::Data::from_pointer(ptr) };
         T::remove(&data);
         <T::Data as driver::DeviceRemoval>::device_remove(&data);
+
+        pr_info!("after remove callback");
     }
 }
 
@@ -271,6 +271,18 @@ impl Device {
         Self { ptr }
     }
 
+
+    /// get *mut bindings::pci_dev
+    pub fn pci_ptr(&self) -> *mut bindings::pci_dev {
+        self.ptr
+    }
+
+    // copy from r4l new ver
+    // /// Returns a new `ARef` of the base `device::Device`.
+    // pub fn as_dev(&self) -> ARef<device::Device> {
+    //     self.0.clone()
+    // }
+
     /// enables bus-mastering for device
     pub fn set_master(&self) {
         // SAFETY: By the type invariants, we know that `self.ptr` is non-null and valid.
@@ -309,6 +321,13 @@ impl Device {
     pub fn select_bars(&self, flags: u64) -> i32 {
         // SAFETY: By the type invariants, we know that `self.ptr` is non-null and valid.
         unsafe { bindings::pci_select_bars(self.ptr, flags) }
+    }
+    /// release selected regions
+    pub fn release_selected_regions(&mut self, bars:i32){
+
+        unsafe {
+            bindings::pci_release_selected_regions(self.ptr, bars);
+        }
     }
 
     /// Reserve selected PCI I/O and memory resources
@@ -385,6 +404,9 @@ macro_rules! define_write {
 impl MappedResource {
     fn try_new(offset: bindings::resource_size_t, len: usize) -> Result<Self> {
         let addr = unsafe { bindings::ioremap(offset, len as _) };
+
+        pr_info!("addr in mappedResource try_new: {:p} ioremap ptr", addr);
+
         if addr.is_null() {
             Err(ENOMEM)
         } else {
@@ -432,6 +454,7 @@ impl MappedResource {
 
 impl Drop for MappedResource {
     fn drop(&mut self) {
+        pr_info!("c bindings::iounmap {} in pci.rs MappedResource", self.ptr);
         unsafe {
             // SAFETY: By the type invariants, we know that `self.ptr` is non-null and valid.
             bindings::iounmap(self.ptr as _);

@@ -5,7 +5,7 @@
 //! Each bus/subsystem is expected to implement [`DriverOps`], which allows drivers to register
 //! using the [`Registration`] class.
 
-use crate::{error::code::*, str::CStr, sync::Arc, Result, ThisModule};
+use crate::{error::code::*, pr_info, str::CStr, sync::Arc, Result, ThisModule};
 use alloc::boxed::Box;
 use core::{cell::UnsafeCell, marker::PhantomData, ops::Deref, pin::Pin};
 
@@ -67,6 +67,15 @@ impl<T: DriverOps> Registration<T> {
         Ok(reg)
     }
 
+    /// doc
+    pub fn get_pci_driver(&self) -> &T::RegType {
+
+        let reg = &self.concrete_reg;
+
+        unsafe {&*reg.get()}
+
+    }
+
     /// Registers a driver with its subsystem.
     ///
     /// It must be pinned because the memory block that represents the registration is potentially
@@ -103,6 +112,7 @@ impl<T: DriverOps> Drop for Registration<T> {
         if self.is_registered {
             // SAFETY: This path only runs if a previous call to `T::register` completed
             // successfully.
+            pr_info!("unregister in driver.rs driver::Registration");
             unsafe { T::unregister(self.concrete_reg.get()) };
         }
     }

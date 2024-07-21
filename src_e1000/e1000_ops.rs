@@ -2,6 +2,9 @@ use kernel::prelude::*;
 use kernel::pci::{MappedResource, IoPort};
 use kernel::delay::coarse_sleep;
 use kernel::sync::Arc;
+//use alloc::vec;
+use alloc::format;
+
 
 use core::time::Duration;
 
@@ -14,11 +17,73 @@ pub(crate) struct E1000Ops {
     pub(crate) io_addr: Arc<IoPort>,
 }
 
+
+macro_rules! dump_registers {
+    ($self:expr, $dump_prefix:expr ,$($reg:expr),+) => {
+        $(
+            let value = $self.mem_addr.readl($reg)?;
+            pr_info!(concat!("{} ",stringify!($reg), ": {:032b}\n"),$dump_prefix, value);
+        )+
+    };
+}
+pub(crate) use dump_registers;
+
 impl E1000Ops {
+
+    pub(crate) fn e1000_regdump(&self, dump_prefix: &str) -> Result {
+
+
+        crate::e1000_ops::dump_registers!(self, dump_prefix, E1000_CTRL, E1000_STATUS, E1000_IMC, E1000_TCTL, E1000_MANC);
+
+        Ok(())
+    }
+
+    pub(crate) fn e1000_down(&self) -> Result {
+        let ctrl = self.mem_addr.readl(E1000_CTRL)?;
+
+        // rctl & ~E1000_RCTL_EN
+        self.mem_addr.writel(ctrl & (!E1000_RCTL_EN), E1000_CTRL)?;
+
+        self.e1000_write_flush();
+        coarse_sleep(Duration::from_millis(10));
+
+        let ctrl = self.mem_addr.readl(E1000_CTRL)?;
+        pr_info!("read ctrl:{:08x} after set",ctrl);
+
+        Ok(())
+    }
+
+    // re-enable arp
+    pub(crate) fn e1000_release_manageability(&self) -> Result{
+
+        pr_info!("e1000_release_manageability");
+
+		// /* re-enable hardware interception of ARP */
+		// manc |= E1000_MANC_ARP_EN;
+		// ew32(MANC, manc);
+
+        let mut manc = self.mem_addr.readl(E1000_MANC)?;
+        pr_info!("manc       :{:032b}",E1000_MANC_ARP_EN);
+        pr_info!("manc before:{:032b}",manc);
+        manc|=E1000_MANC_ARP_EN;
+        pr_info!("manc after :{:032b}",manc);
+        self.mem_addr.writel(manc, E1000_MANC)?;
+
+        self.e1000_write_flush();
+        coarse_sleep(Duration::from_millis(10));
+
+        Ok(())
+    }
 
     /// reset the hardware completely, correspond to C version `e1000_reset_hw`.
     /// only add support for QEMU's 82540EM chip.
     pub(crate) fn e1000_reset_hw(&self) -> Result{
+
+        //pr_info!("call reset_hw");
+
+        //self.e1000_regdump("before reset_hw");
+
+        pr_info!("e1000_ops self.mem_addr:{:p}", &self.mem_addr);
 
         /* Clear interrupt mask to stop board from generating interrupts */
         self.mem_addr.writel(0xffffffff, E1000_IMC)?;
@@ -38,6 +103,7 @@ impl E1000Ops {
 
         let ctrl = self.mem_addr.readl(E1000_CTRL)?;
 
+
         /* These controllers can't ack the 64-bit write when issuing the
 		 * reset, so use IO-mapping as a workaround to issue the reset
 		 */
@@ -50,6 +116,7 @@ impl E1000Ops {
          */
         coarse_sleep(Duration::from_millis(5));
 
+
         /* Disable HW ARPs on ASF enabled adapters */
         let manc = self.mem_addr.readl(E1000_MANC)?;
         self.mem_addr.writel(manc & (!E1000_MANC_ARP_EN), E1000_MANC)?;
@@ -59,6 +126,10 @@ impl E1000Ops {
         
         /* Clear any pending interrupt events. */
         self.mem_addr.readl(E1000_ICR)?;
+
+
+
+        //self.e1000_regdump("after reset_hw");
 
         Ok(())
     }
@@ -153,6 +224,9 @@ impl E1000Ops {
         // Disable RDTR and RADV timer, since we use NAPI, we don't need hardware to help us decrease interrupts.
         self.mem_addr.writel(0, E1000_RDTR)?;
         self.mem_addr.writel(0, E1000_RADV)?;
+
+
+        self.e1000_regdump("after hw_reset");
         
         Ok(())
     }
@@ -188,4 +262,3 @@ impl E1000Ops {
 
 
 }
-

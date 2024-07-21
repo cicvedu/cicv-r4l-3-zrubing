@@ -12,8 +12,7 @@
  *	   for IRQ management (e.g. start()->_SRS).
  */
 
-#define pr_fmt(fmt) "ACPI: PCI: " fmt
-
+#include "linux/printk.h"
 #include <linux/syscore_ops.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -527,29 +526,41 @@ static int acpi_irq_balance = -1;	/* 0: static, 1: balance */
 
 static int acpi_pci_link_allocate(struct acpi_pci_link *link)
 {
+
 	acpi_handle handle = link->device->handle;
 	int irq;
 	int i;
 
+	pr_info("in acpi_pci_link_allocate 1");
+
 	if (link->irq.initialized) {
+
+		pr_info("in acpi_pci_link_allocate 2");
 		if (link->refcnt == 0)
 			/* This means the link is disabled but initialized */
 			acpi_pci_link_set(link, link->irq.active);
 		return 0;
 	}
 
+
 	/*
 	 * search for active IRQ in list of possible IRQs.
 	 */
 	for (i = 0; i < link->irq.possible_count; ++i) {
+
+		pr_info("in acpi_pci_link_allocate 3");
 		if (link->irq.active == link->irq.possible[i])
 			break;
 	}
+
+	pr_info("in acpi_pci_link_allocate 4");
 	/*
 	 * forget active IRQ that is not in possible list
 	 */
 	if (i == link->irq.possible_count) {
 		if (acpi_strict)
+
+			pr_info("in acpi_pci_link_allocate 5");
 			acpi_handle_warn(handle, "_CRS %d not found in _PRS\n",
 					 link->irq.active);
 		link->irq.active = 0;

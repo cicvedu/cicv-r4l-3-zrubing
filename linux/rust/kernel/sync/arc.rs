@@ -15,7 +15,7 @@
 //!
 //! [`Arc`]: https://doc.rust-lang.org/std/sync/struct.Arc.html
 
-use crate::{bindings, error::code::*, Error, Opaque, Result};
+use crate::{bindings, error::code::*, pr_info, Error, Opaque, Result};
 use alloc::{
     alloc::{alloc, dealloc},
     vec::Vec,
@@ -80,9 +80,12 @@ impl<T> Arc<T> {
         let layout = Layout::new::<ArcInner<T>>();
         // SAFETY: The layout size is guaranteed to be non-zero because `ArcInner` contains the
         // reference count.
-        let inner = NonNull::new(unsafe { alloc(layout) })
+        let alloc_ptr = unsafe { alloc(layout) };
+        let inner = NonNull::new(alloc_ptr)
             .ok_or(ENOMEM)?
             .cast::<ArcInner<T>>();
+
+        pr_info!("alloc_ptr in Arc::try_new {:p}", alloc_ptr);
 
         // INVARIANT: The refcount is initialised to a non-zero value.
         let value = ArcInner {
@@ -234,17 +237,22 @@ impl<T: ?Sized> AsRef<T> for Arc<T> {
 
 impl<T: ?Sized> Drop for Arc<T> {
     fn drop(&mut self) {
+
         // SAFETY: By the type invariant, there is necessarily a reference to the object. We cannot
         // touch `refcount` after it's decremented to a non-zero value because another thread/CPU
         // may concurrently decrement it to zero and free it. It is ok to have a raw pointer to
         // freed/invalid memory as long as it is never dereferenced.
         let refcount = unsafe { self.ptr.as_ref() }.refcount.get();
 
+        pr_info!("drop in Arc: {:p}, self.ptr.as_ref() :{:p}", self.ptr , self.ptr.as_ref());
+
         // INVARIANT: If the refcount reaches zero, there are no other instances of `Arc`, and
         // this instance is being dropped, so the broken invariant is not observable.
         // SAFETY: Also by the type invariant, we are allowed to decrement the refcount.
         let is_zero = unsafe { bindings::refcount_dec_and_test(refcount) };
         if is_zero {
+
+            pr_info!("drop in Arc is zero");
             // The count reached zero, we must free the memory.
 
             // SAFETY: This thread holds the only remaining reference to `self`, so it is safe to

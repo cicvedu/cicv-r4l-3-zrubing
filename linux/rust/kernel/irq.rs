@@ -10,11 +10,7 @@
 #![allow(dead_code)]
 
 use crate::{
-    bindings,
-    error::{from_kernel_result, to_result},
-    str::CString,
-    types::PointerWrapper,
-    Error, Result, ScopeGuard,
+    bindings, error::{from_kernel_result, to_result}, pr_info, str::CString, types::PointerWrapper, Error, Result, ScopeGuard
 };
 use core::{fmt, marker::PhantomData, ops::Deref};
 use macros::vtable;
@@ -360,6 +356,7 @@ impl<T: PointerWrapper> Drop for InternalRegistration<T> {
         //
         // SAFETY: When `try_new` succeeds, the irq was successfully requested, so it is ok to free
         // it here.
+        pr_info!("drop in irq.rs InternalRegistration free_irq");
         unsafe { bindings::free_irq(self.irq, self.data) };
 
         // Free context data.
